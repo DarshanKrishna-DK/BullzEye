@@ -15,11 +15,12 @@ const StockGraph = () => {
       const isWeekend = today.day() === 0 || today.day() === 6; // 0 = Sunday, 6 = Saturday
 
       // Determine the date to fetch data for
-      const dateToFetch = isWeekend ? today.subtract(1, 'day').format('YYYY-MM-DD') : today.format('YYYY-MM-DD');
+      // const dateToFetch = isWeekend ? today.subtract(1, 'day').format('YYYY-MM-DD') : today.format('YYYY-MM-DD');
 
       // Fetch stock data from Alpha Vantage
       const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=LB8HPNKITOZYSI33`);
       const data = await response.json();
+      console.log(data);
 
       // Access the time series data
       const timeSeries = data["Time Series (5min)"];

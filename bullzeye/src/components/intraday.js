@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import bullzeyeLogo from '../assets/Logo_noName.png';
 import '../styles/intraday.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
-import { faBookmark, faBell } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faBell, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import StockGraph from './chart';
+import StockDropDown from './stockDropDown';
 
 function Intraday() {
   return (
@@ -14,7 +15,7 @@ function Intraday() {
             <div id="Stock-details">
               <StockDetails/>
               <StockGraph/>
-              <StockPrice/>
+              {/* <StockPrice/> */}
             </div>
             <StockDropDown/>
             <TraderTools/>
@@ -104,39 +105,6 @@ const StockDetails = () => {
   );
 };
 
-// Graph which shows the stock performace
-// const StockChart = () => {
-//   <StockGraph/>
-// };
-
-// Contains stock performance with low and high price for 1 Day & 52 Week
-const StockPrice = () => {
-  <p>This component will have 1day and 52 week low and high. </p>
-};
-
-// Contains dropdown to access Stock parameter values, positions, about company & financials
-const StockDropDown = () => {
-  const [selectedOption, setSelectedOption] = useState("Parameters"); // Default selected option
-
-  const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value); // Update selected option
-  };
-
-  return (
-    <div className="stock-dropdown">
-      <label htmlFor="stock-options">Select Option:</label>
-      <select id="stock-options" value={selectedOption} onChange={handleSelectChange}>
-        <option value="Parameters">Parameters</option>
-        <option value="Market Depth">Market Depth</option>
-        <option value="Positions">Positions</option>
-      </select>
-      <div className="selected-option">
-        <p>You have selected: {selectedOption}</p>
-      </div>
-    </div>
-  );
-};
-
 // Contains news section, test token balance and chatbot assistant. 
 const TraderTools = () => {
   const handleChatbotClick = () => {
@@ -146,9 +114,19 @@ const TraderTools = () => {
 
   return (
     <div className="trader-tools">
-      <h3>Trader Tools</h3>
+      <div className="news-section">
+        <h3>News & Events</h3>
+        <div className='news-box'>
+          <h5>News one title goes here</h5>
+          <a href='www.google.com'>Read more <FontAwesomeIcon icon={faArrowUpRightFromSquare} /></a>
+        </div>
+        <div className='news-box'>
+          <h5>News one title goes here</h5>
+          <a href='www.google.com'>Read more <FontAwesomeIcon icon={faArrowUpRightFromSquare} /></a>
+        </div>
+      </div>
       <button className="chatbot-button" onClick={handleChatbotClick}>
-        🤖 Open AI Chatbot
+        🤖 BIG BULL
       </button>
     </div>
   );
