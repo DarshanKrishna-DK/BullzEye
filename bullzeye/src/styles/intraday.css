@@ -1,0 +1,243 @@
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.indices {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+}
+  
+.index {
+    font-size: 14px;
+    text-align: center;
+    background: #1e1e1e;
+    border: .1rem solid #333;
+    border-radius: 5px;
+    padding: 1rem 1.5rem;
+}
+  
+.index p{
+    margin: 0;
+    padding-bottom: .5rem;
+    font-size: 1rem;
+    text-align: left;
+}
+  
+.index .green {
+    color: #4caf50;
+    margin-left: .6rem;
+}
+  
+.index .red {
+    color: #f44336;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+  
+.logo img {
+    margin-right: 1rem;
+}
+  
+.logo h2{
+    color: white;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+  
+.logo span {
+    font-size: 1.4rem;
+}
+
+.Intra-page{
+    display: flex;
+    padding: 0 2.5rem 0 3rem;
+}
+
+#Stock-details{
+    flex: 0 0 58%;
+    background: black;
+}
+
+.stock-features {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 20px 0;
+    padding: 0 3rem 0 0;
+}
+
+.stock-detail{
+    display: flex;
+    flex-direction: column;
+}
+
+.stock-detail h2{
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.stock-detail p{
+    margin: 0 ;
+    padding: 10px 0;
+    font-size: 1rem;
+}
+
+.stock-detail p span{
+    margin-left: 40px;
+}
+
+.stock-actions{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    background: peru;
+}
+
+.stock-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.stock-buttons button {
+    background-color: transparent;
+    font-size: 1.7rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.stock-buttons button:hover {
+    color: #7a3cbb;
+}
+
+.green {
+    color: #4caf50;
+  }
+  
+.red {
+    color: #f44336;
+}
+
+.simulator-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.simulator-section p{
+    margin: 0;
+    padding: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding-right: 2rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px; 
+    height: 28px; 
+}
+
+.switch input {
+    opacity: 0; /* Hide the default checkbox */
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; /* Background color when OFF */
+    transition: .4s; /* Transition for smooth sliding */
+    border-radius: 28px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px; /* Height of the toggle knob */
+    width: 20px; /* Width of the toggle knob */
+    left: 4px; /* Position of the knob */
+    bottom: 4px; /* Position of the knob */
+    background-color: white; /* Color of the knob */
+    border-radius: 50%; /* Round knob */
+    transition: .4s; /* Transition for smooth sliding */
+}
+
+/* Change background color when checked */
+input:checked + .slider {
+    background-color: #4caf50; /* Background color when ON */
+}
+
+/* Move the knob when checked */
+input:checked + .slider:before {
+    transform: translateX(26px); /* Move knob to the right */
+}
+
+.stock-dropdown, .trader-tools {
+    margin-top: 20px; 
+    background: rgb(247, 247, 187);
+    height: 100vh;
+    flex: 0 0 20%;
+    border-right: 1px solid black;
+  }
+  
+  .stock-dropdown label {
+    margin-right: 10px; /* Space between label and dropdown */
+    color: white; /* Label color */
+  }
+  
+  .stock-dropdown select {
+    padding: 5px; /* Padding for the dropdown */
+    border-radius: 4px; /* Rounded corners */
+    border: 1px solid #444; /* Border style */
+    background-color: #1f1f1f; /* Background color */
+    color: white; /* Text color */
+  }
+  
+  .selected-option {
+    margin-top: 10px; /* Space above the selected option text */
+    color: white; /* Text color */
+  }
+  
+  .chatbot-button {
+    background-color: #4caf50; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+  }
+  
+  .chatbot-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
