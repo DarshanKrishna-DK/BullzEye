@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { Chart, registerables } from 'chart.js'; // Import Chart and registerables
+import { Chart, registerables } from 'chart.js'; 
 import dayjs from 'dayjs';
 
-Chart.register(...registerables); // Register all necessary components
+Chart.register(...registerables); 
 
 const StockGraph = () => {
   const [chartData, setChartData] = useState({});
