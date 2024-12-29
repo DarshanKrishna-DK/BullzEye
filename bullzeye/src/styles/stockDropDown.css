@@ -74,13 +74,13 @@ p, h4{
     background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgb(26, 26, 26) 50%, rgba(44, 44, 44, 0.5) 100%);
 }
 
-.positions h4{
+.positions h3{
     font-size: 1.2rem;
     text-transform: uppercase;
     margin-bottom: 1rem;
 }
 
-.positions p{
+.positions span{
     font-weight: 500;
     font-size: 1rem;
 }
@@ -103,6 +103,7 @@ p, h4{
     font-weight: 400;
     border-right: 1px solid #333;
     height: 100%;
+    padding-top: 1.5rem;
 }
 
 .position-info{

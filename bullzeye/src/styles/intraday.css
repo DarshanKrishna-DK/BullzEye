@@ -69,14 +69,16 @@ body {
 
 .stock-features {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin: 10px 0 20px 0;
     padding: 0 3rem 0 0;
+    width: 100%;
 }
 
 .stock-detail{
     display: flex;
+    flex: 0 0 42%;
     flex-direction: column;
 }
 
@@ -84,7 +86,7 @@ body {
     margin: 0;
     padding: 0;
     font-weight: 500;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     text-transform: uppercase;
 }
 
@@ -98,16 +100,12 @@ body {
     margin-left: 40px;
 }
 
-.stock-actions{
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
-    background: peru;
-}
-
 .stock-buttons {
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    flex: 0 0 20%;
+    max-width: 10rem;
+    /* gap: 10px; */
 }
 
 .stock-buttons button {
@@ -116,13 +114,13 @@ body {
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 
 .stock-buttons button:hover {
     color: #7a3cbb;
+    background: black;
 }
 
 .green {
@@ -135,10 +133,12 @@ body {
 
 .simulator-section {
     display: flex;
+    flex: 0 0 40%;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    /* margin-right: 3rem; */
 }
 
 .flex-container{

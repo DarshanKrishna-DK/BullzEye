@@ -1,29 +1,47 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import bullzeyeLogo from '../assets/Logo_noName.png';
 import '../styles/intraday.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 import { faBookmark, faBell, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-import StockGraph from './chart';
 import StockDropDown from './stockDropDown';
+import StockGraph from './stockGraph';
+import StockPositions from './stockPositions';
 
 function Intraday() {
+  const initialPrice = 627.8; // Set the initial price
+  const [currentPrice, setCurrentPrice] = useState(initialPrice); // State to hold the current price
+  const [walletBalance, setWalletBalance] = useState(100000); // Initial wallet balance
+  const [stockPositions, setStockPositions] = useState([]); // State to hold stock positions
+
   return (
       <div className="intraday">
         <main>
-          <Index/>
-          <div class="Intra-page">
+          <Index />
+          <div className="Intra-page">
             <div id="Stock-details">
-              <StockDetails/>
-              <StockGraph/>
-              {/* <StockPrice/> */}
+              <StockDetails currentPrice={currentPrice} initialPrice={initialPrice} walletBalance={walletBalance} />
+              <StockGraph initialPrice={initialPrice} setCurrentPrice={setCurrentPrice} />
+              <StockPositions 
+                currentPrice={currentPrice} 
+                walletBalance={walletBalance} 
+                setWalletBalance={setWalletBalance} 
+                setStockPositions={setStockPositions}
+                stockPositions={stockPositions}
+              />
             </div>
-            <StockDropDown/>
-            <TraderTools/>
+            <StockDropDown 
+              stockPositions={stockPositions} // Pass stockPositions to StockDropDown
+              currentPrice={currentPrice} // Pass currentPrice to StockDropDown
+              setWalletBalance={setWalletBalance}
+              setStockPositions={setStockPositions}
+            />
+            <TraderTools />
           </div>
         </main>
       </div>
   );
 }
+
 
 // Contains the index prices (NIFTY, BANK NIFTY, SENSEX, etc)
 const Index = () => {
@@ -53,7 +71,10 @@ const Index = () => {
 };
 
 // Contains Stock Name, Price, Returns, Save, Alert and Simulator Toggle
-const StockDetails = () => {
+const StockDetails = ({ currentPrice, initialPrice, walletBalance }) => {
+  const returns = currentPrice - initialPrice; 
+  const returnPercent = ((returns / initialPrice) * 100).toFixed(2);
+
   const [isSimulatorOn, setIsSimulatorOn] = useState(false); // State to manage simulator toggle
 
   const toggleSimulator = () => {
@@ -67,38 +88,37 @@ const StockDetails = () => {
     }
   };
 
-  const stockPrice = 627.80; // Example stock price
-  const stockReturns = +10.85; // Example returns
-  const stockReturnsPercent = -1.70; // Example returns percentage
-  const balance = 100000; // Example balance
-
   // Determine the class based on the returns value
-  const returnsClass = stockReturns > 0 ? 'green' : 'red';
+  const returnsClass = returns > 0 ? 'green' : 'red';
 
   return (
     <div className="stock-features">
       <div className="stock-detail">
         <h2>One Mobikwik Systems</h2>
-        <p>₹{stockPrice}
-        <span className={returnsClass}>
-          {stockReturns} ({stockReturnsPercent}%) 
-        </span>
+        <p>₹{currentPrice}
+          <span className={returnsClass}>
+            {returns.toFixed(2)} ({returnPercent}%) 
+          </span>
         </p>
       </div>
       <div className="stock-buttons">
-        <button className="actionbutton"><FontAwesomeIcon icon={faBookmark} /></button>
-        <button className="actionbutton"><FontAwesomeIcon icon={faBell} /></button>
+        <button className="actionbutton">
+          <FontAwesomeIcon icon={faBookmark} />
+        </button>
+        <button className="actionbutton">
+          <FontAwesomeIcon icon={faBell} />
+        </button>
       </div>
       <div className="simulator-section">
-        <div className = "flex-container">
-        <h3>Simulator</h3>
-        <label className="switch">
-          <input type="checkbox" checked={isSimulatorOn} onChange={toggleSimulator} />
-          <span className="slider"></span>
-        </label>
+        <div className="flex-container">
+          <h3>Simulator</h3>
+          <label className="switch">
+            <input type="checkbox" checked={isSimulatorOn} onChange={toggleSimulator} />
+            <span className="slider"></span>
+          </label>
         </div>
         <div className="balance">
-          <p>Balance: {isSimulatorOn ? balance + ' BUL' : '₹0'}</p>
+          <p>Balance: {isSimulatorOn ? walletBalance + ' BUL' : '₹0'}</p>
         </div>
       </div>
     </div>
@@ -108,7 +128,6 @@ const StockDetails = () => {
 // Contains news section, test token balance and chatbot assistant. 
 const TraderTools = () => {
   const handleChatbotClick = () => {
-    // Logic to open the chatbot can be implemented here
     alert("Chatbot is now open!"); // Placeholder for chatbot functionality
   };
 
@@ -121,7 +140,7 @@ const TraderTools = () => {
           <a href='www.google.com'>Read more <FontAwesomeIcon icon={faArrowUpRightFromSquare} /></a>
         </div>
         <div className='news-box'>
-          <h5>News one title goes here</h5>
+          <h5>News two title goes here</h5>
           <a href='www.google.com'>Read more <FontAwesomeIcon icon={faArrowUpRightFromSquare} /></a>
         </div>
       </div>
