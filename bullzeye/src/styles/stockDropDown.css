@@ -1,0 +1,133 @@
+#stock-options{
+    margin: 1.5rem 0;
+    width: 100%;
+}
+
+p, h4{
+    padding: 0;
+    margin: 0;
+}
+  
+.stock-dropdown select {
+    padding: 5px; 
+    border-radius: 4px;
+    border: 1px solid #444;
+    background-color: #1f1f1f;
+    color: white; 
+}
+  
+.selected-option {
+    margin-top: 10px;
+    color: white; 
+}
+
+.parameter-row{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem 0;
+}
+
+.parameter{
+    background: rgb(18, 18, 18);
+    width: 6rem;
+    border-radius: 5px;
+    margin: 0 .5rem;
+    padding: 1rem .5rem;
+}
+
+.parameter h4{
+    padding: 0;
+    margin: 0;
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.parameter p{
+    padding: 5px 0 0 0;
+    margin: 0;
+    font-size: .8rem;
+    font-weight: 400;
+}
+
+.market-depth{
+    margin-top: 50%;
+}
+
+.market-depth p{
+    font-size: 1.2rem;
+}
+
+.positions{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.returns-box{
+    /* border: 1px solid rgb(134, 134, 134); */
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    width: 86%;
+    box-shadow: 0rem 0rem .3rem white;
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgb(26, 26, 26) 50%, rgba(44, 44, 44, 0.5) 100%);
+}
+
+.positions h3{
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.positions span{
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.position-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: .4rem 0;
+    background: rgb(18, 18, 18);
+    padding: .3rem 0;
+    border-radius: 5px;
+}
+
+.position-box h4{
+    margin: 0 .5rem 0 0;
+    flex: 0 0 37%;
+    font-size: .9rem;
+    font-weight: 400;
+    border-right: 1px solid #333;
+    height: 100%;
+    padding-top: 1.5rem;
+}
+
+.position-info{
+    flex: 0 0 35%;
+}
+
+.position-info p{
+    font-size: .8rem;
+    font-weight: 400;
+    padding: .1rem;
+}
+
+.exit-button{
+    border-radius: 50%;
+    padding: .2rem;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    margin-left: .5rem;
+    transition: all .3s ease-in-out;
+}
+
+.exit-button:hover{
+    background: #915acb;
+    transform: translateX(2px);
+}

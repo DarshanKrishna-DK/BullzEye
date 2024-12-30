@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../styles/landing.css';
 import bullzeyeLogo from '../assets/Logo_noName.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
@@ -49,12 +49,35 @@ const Header = () => (
 );
 
 const IndicesSection = () => {
-  const indices = [
-    { name: "NIFTY", value: "23,813.40", change: "+63.20 (0.27%)", className: "green" },
-    { name: "SENSEX", value: "78,699.07", change: "+226.59 (0.29%)", className: "green" },
-    { name: "BANKNIFTY", value: "51,311.30", change: "+140.60 (0.27%)", className: "green" },
-    { name: "FINNIFTY", value: "23,750.00", change: "+75.00 (0.32%)", className: "green" },
-  ];
+  const [indices, setIndices] = useState([
+    { name: "NIFTY", value: 23813.40, change: "+0.00 (0.00%)", className: "green" },
+    { name: "SENSEX", value: 78699.07, change: "+0.00 (0.00%)", className: "green" },
+    { name: "BANKNIFTY", value: 51311.30, change: "+0.00 (0.00%)", className: "green" },
+    { name: "FINNIFTY", value: 23750.00, change: "+0.00 (0.00%)", className: "green" },
+  ]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndices(prevIndices => 
+        prevIndices.map(index => {
+          const fluctuation = (Math.random() * 2 - 1) * 0.5; // Random fluctuation between -0.5 and 0.5
+          const newValue = parseFloat((index.value + fluctuation).toFixed(2)); // Update value
+          const change = (newValue - index.value).toFixed(2);
+          const changePercentage = ((change / index.value) * 100).toFixed(2);
+          const className = change > 0 ? "green" : change < 0 ? "red" : "neutral"; // Determine class based on change
+
+          return {
+            ...index,
+            value: newValue,
+            change: `${change} (${changePercentage}%)`,
+            className: className,
+          };
+        })
+      );
+    }, 1000); // Update every second
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
 
   return (
     <section className="indices">
@@ -69,38 +92,63 @@ const IndicesSection = () => {
 };
 
 const MostTraded = () => {
-  const stocks = [
-    { name: "One Mobikwik Systems", price: "₹627.80", change: "-10.85 (-1.70%)" },
-    { name: "Garden Reach", price: "₹1,695.80", change: "+138.70 (8.91%)" },
-    { name: "Finolex Industries", price: "₹256.05", change: "+18.65 (7.86%)" },
-  ];
+  const navigate = useNavigate(); // Initialize useNavigate
+  const [stocks, setStocks] = useState([
+    { name: "One Mobikwik Systems", price: 627.80, change: "0.00 (0.00%)" },
+    { name: "Garden Reach", price: 1695.80, change: "0.00 (0.00%)" },
+    { name: "Finolex Industries", price: 256.05, change: "0.00 (0.00%)" },
+  ]);
+
+  useEffect(() => {
+    const intervals = stocks.map((stock, index) => {
+      return setInterval(() => {
+        setStocks(prevStocks => 
+          prevStocks.map((s, idx) => {
+            if (idx === index) {
+              const fluctuation = (Math.random() * 10 - 5); // Random fluctuation between -5 and +5
+              const newPrice = parseFloat((s.price + fluctuation).toFixed(2)); // Update price
+              const change = (newPrice - s.price).toFixed(2);
+              const changePercentage = ((change / s.price) * 100).toFixed(2);
+              return {
+                ...s,
+                price: newPrice,
+                change: `${change} (${changePercentage}%)`,
+              };
+            }
+            return s; // Return unchanged stock
+          })
+        );
+      }, (index + 1) * 3000); // Different intervals for each stock (3s, 6s, 9s)
+    });
+
+    return () => intervals.forEach(clearInterval); // Cleanup on unmount
+  }, [stocks]);
+
+  const handleCardClick = () => {
+    navigate("/intraday"); // Navigate to the intraday page
+  };
 
   return (
     <section className="most-traded">
       <h2>Most Traded Stocks</h2>
       <div className="cards">
         {stocks.map((stock, idx) => (
-          <StockCard key={idx} {...stock} />
+          <StockCard key={idx} {...stock} onClick={handleCardClick} />
         ))}
       </div>
     </section>
   );
 };
 
-const StockCard = ({ name, price, change }) => {
-    const navigate = useNavigate();
-    const handleNavigate = () => {
-      navigate('/intraday');
-    }
-    return(
-    <div onClick={handleNavigate} className="stock-card" style={{ cursor: 'pointer' }}>
+const StockCard = ({ name, price, change, onClick }) => {
+  return (
+    <div className="stock-card" onClick={onClick} style={{ cursor: 'pointer' }}>
       <div className="stock-name">{name}</div>
-      <div className="stock-price">{price}</div>
+      <div className="stock-price">₹{price}</div>
       <div className={`stock-change ${change.startsWith('-') ? 'red' : 'green'}`}>{change}</div>
     </div>
-    );
+  );
 };
-
 
 const ProductTools = () => {
   const tools = [

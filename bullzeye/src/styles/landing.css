@@ -84,6 +84,7 @@ nav a:hover{
   border: .1rem solid #333;
   border-radius: 5px;
   padding: 1rem 1.5rem;
+  min-width: 12rem;
 }
 
 .index p{

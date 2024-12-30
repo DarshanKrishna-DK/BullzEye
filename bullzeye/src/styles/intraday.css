@@ -69,14 +69,16 @@ body {
 
 .stock-features {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin: 10px 0 20px 0;
     padding: 0 3rem 0 0;
+    width: 100%;
 }
 
 .stock-detail{
     display: flex;
+    flex: 0 0 42%;
     flex-direction: column;
 }
 
@@ -84,7 +86,7 @@ body {
     margin: 0;
     padding: 0;
     font-weight: 500;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     text-transform: uppercase;
 }
 
@@ -98,16 +100,12 @@ body {
     margin-left: 40px;
 }
 
-.stock-actions{
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
-    background: peru;
-}
-
 .stock-buttons {
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    flex: 0 0 20%;
+    max-width: 10rem;
+    /* gap: 10px; */
 }
 
 .stock-buttons button {
@@ -116,13 +114,13 @@ body {
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 
 .stock-buttons button:hover {
     color: #7a3cbb;
+    background: black;
 }
 
 .green {
@@ -135,15 +133,17 @@ body {
 
 .simulator-section {
     display: flex;
+    flex: 0 0 40%;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    /* margin-right: 3rem; */
 }
 
 .flex-container{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 }
 
@@ -152,7 +152,6 @@ body {
     padding: 0;
     font-size: 1.1rem;
     font-weight: 500;
-    padding-right: 2rem;
 }
 
 .switch {
@@ -202,18 +201,29 @@ input:checked + .slider:before {
     transform: translateX(26px); /* Move knob to the right */
 }
 
-.stock-dropdown, .trader-tools {
-    margin-top: 20px; 
-    background: rgb(247, 247, 187);
-    height: 100vh;
-    flex: 0 0 20%;
-    border-right: 1px solid black;
-  }
+.stock-dropdown, .trader-tools{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 0 2rem;
+    background: #333;
+    border-radius: 5px;
+    margin: 20px 2px;
+    max-height: 100vh;
+    flex: 0 0 17%;
+}
   
-  .stock-dropdown label {
-    margin-right: 10px; /* Space between label and dropdown */
-    color: white; /* Label color */
-  }
+.stock-dropdown .flex-container{
+    margin-top: 1.5rem;
+    position: relative;
+    width: 100%;
+    /* width: 5rem; */
+}
+
+#stock-options{
+    width: 100%;
+}
   
   .stock-dropdown select {
     padding: 5px; /* Padding for the dropdown */
@@ -227,17 +237,122 @@ input:checked + .slider:before {
     margin-top: 10px; /* Space above the selected option text */
     color: white; /* Text color */
   }
+
+  .trader-tools{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .trader-tools h3{
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  .news-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    background: rgb(18, 18, 18);
+    padding: .7rem;
+    border-radius: .3rem;
+    margin-bottom: 1rem;
+  }
+
+  .news-box h5{
+    margin: 0;
+    padding: 0;
+    font-size: .9rem;
+    margin-bottom: .5rem;
+  }
+
+  .news-box a{
+    color: white;
+    font-size: .8rem;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+  }
+
+  .news-box a:hover{
+    color: #7a3cbb;
+  }
   
   .chatbot-button {
-    background-color: #4caf50; /* Green background */
-    color: white; /* White text */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px 20px; /* Padding */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth background color transition */
+    background-color: rgb(128, 127, 127); 
+    border: none; 
+    border-radius: 5px;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease; 
   }
   
   .chatbot-button:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #7a3cbb; 
+  }
+
+  .chat-terminal {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    position: absolute;
+    bottom: 60px;
+    right: 20px;
+    background-color: white;
+    color: #000000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chat-messages {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user {
+    align-self: flex-end;
+    background-color: #d1e7dd;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px 0;
+  }
+  
+  .bot {
+    align-self: flex-start;
+    background-color: #f8d7da;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px 0;
+  }
+  
+  .chat-input {
+    display: flex;
+    padding: 10px;
+  }
+  
+  .chat-input input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .chat-input button {
+    margin-left: 5px;
+  }
+  
+  .question-buttons {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .question-buttons button {
+    margin: 5px 0;
   }
