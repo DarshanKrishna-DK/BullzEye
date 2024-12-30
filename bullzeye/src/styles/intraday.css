@@ -12,7 +12,28 @@ body {
     padding: 15px 0;
     border-bottom: 1px solid #333;
 }
-  
+
+.chat-window {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    height: max-content;
+    width: 300px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1000;
+    z-index: 1;
+  }
+
+  .chat-content {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+  }
+
 .index {
     font-size: 14px;
     text-align: center;
@@ -75,6 +96,120 @@ body {
     padding: 0 3rem 0 0;
 }
 
+/* .height-holder{
+    height: 230px;
+} */
+
+.chat-messages{
+    height: 230px; /* Adjust this to your preferred height */
+    overflow-y: auto; /* Enables vertical scrolling */
+    border: 1px solid #ccc; /* Optional: add a border for better visibility */
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(18, 18, 18); /* Optional: add background color */
+    border-color: #000000;
+}
+
+.chatbot-input{
+    width: 94%;
+    margin-bottom: 20px;
+    height: 30px;
+    background-color: rgb(18, 18, 18);
+    border-color: #000000;
+
+}
+
+.chatbot-option-button {
+    width: 100%; /* Ensures the button takes up the full width of the table cell */
+    background-color: rgb(128, 127, 127);
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+.chatbot-close-button{
+    background-color: rgb(128, 127, 127); 
+    border: none; 
+    border-radius: 5px;
+    padding: .5rem 0.5rem;
+    cursor: pointer;
+    margin: 0;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease; 
+    padding-left: 40%;
+    padding-right: 40%;
+    position: inherit;
+}
+
+.table-button-data{
+    margin: 0;
+    padding: 0;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 70%;
+  }
+  
+  .user-message {
+    background-color: #d1f7c4;
+    color: #333;
+    text-align: right;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+  
+  .bot-message {
+    background-color: #e8e8e8;
+    color: #333;
+    text-align: left;
+    align-self: flex-start;
+    margin-right: auto;
+  }
+  
+  .chat-input-section {
+    display: flex;
+    gap: 10px;
+  }
+
+  .chat-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .button-row {
+    display: flex;
+    gap: 10px; /* Add spacing between buttons */
+  }
+  
+  .chatbot-option-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    flex: 1; /* Makes the buttons adapt evenly */
+  }
+  
+  .chatbot-option-button:hover {
+    background-color: #0056b3;
+  }
+
+.Button-Table{
+    width: fit-content;
+    padding: 0;
+}
 .stock-detail{
     display: flex;
     flex-direction: column;
@@ -103,6 +238,19 @@ body {
     justify-content: space-between;
     width: 50%;
     background: peru;
+}
+
+.Send-Button{
+    background-color: rgb(128, 127, 127); 
+    border: none; 
+    border-radius: 5px;
+    padding: .5rem 0.5rem;
+    cursor: pointer;
+    margin: 0;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease; 
+    position: inherit;
+    padding: 0%;
 }
 
 .stock-buttons {
@@ -140,6 +288,7 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
 
 .flex-container{
     display: flex;
@@ -284,13 +433,22 @@ input:checked + .slider:before {
     background-color: rgb(128, 127, 127); 
     border: none; 
     border-radius: 5px;
-    padding: .5rem 1rem;
+    padding: .5rem 0.7rem;
     cursor: pointer;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
     transition: background-color 0.3s ease; 
   }
   
+.button-set{
+    position: relative;
+    margin-bottom: 10%;
+}
+
   .chatbot-button:hover {
+    background-color: #7a3cbb; 
+  }
+
+  .chatbot-close-button:hover {
     background-color: #7a3cbb; 
   }
