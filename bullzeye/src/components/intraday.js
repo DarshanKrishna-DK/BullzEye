@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import bullzeyeLogo from '../assets/Logo_noName.png';
 import '../styles/intraday.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
@@ -44,12 +44,35 @@ function Intraday() {
 
 // Contains the index prices (NIFTY, BANK NIFTY, SENSEX, etc)
 const Index = () => {
-  const indices = [
-    { name: "NIFTY", value: "23,813.40", change: "+63.20 (0.27%)", className: "green" },
-    { name: "SENSEX", value: "78,699.07", change: "+226.59 (0.29%)", className: "green" },
-    { name: "BANKNIFTY", value: "51,311.30", change: "+140.60 (0.27%)", className: "green" },
-    { name: "FINNIFTY", value: "23,750.00", change: "+75.00 (0.32%)", className: "green" },
-  ];
+  const [indices, setIndices] = useState([
+    { name: "NIFTY", value: 23813.40, change: "+0.00 (0.00%)", className: "green" },
+    { name: "SENSEX", value: 78699.07, change: "+0.00 (0.00%)", className: "green" },
+    { name: "BANKNIFTY", value: 51311.30, change: "+0.00 (0.00%)", className: "green" },
+    { name: "FINNIFTY", value: 23750.00, change: "+0.00 (0.00%)", className: "green" },
+  ]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndices(prevIndices => 
+        prevIndices.map(index => {
+          const fluctuation = (Math.random() * 2 - 1) * 0.5; // Random fluctuation between -0.5 and 0.5
+          const newValue = parseFloat((index.value + fluctuation).toFixed(2)); // Update value
+          const change = (newValue - index.value).toFixed(2);
+          const changePercentage = ((change / index.value) * 100).toFixed(2);
+          const className = change > 0 ? "green" : change < 0 ? "red" : "neutral"; // Determine class based on change
+
+          return {
+            ...index,
+            value: newValue,
+            change: `${change} (${changePercentage}%)`,
+            className: className,
+          };
+        })
+      );
+    }, 1000); // Update every second
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
 
   return (
     <section className="indices">

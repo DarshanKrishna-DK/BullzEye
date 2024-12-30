@@ -9,15 +9,15 @@ const StockDropDown = ({ stockPositions, currentPrice, setWalletBalance, setStoc
   const [exitIndex, setExitIndex] = useState(null); // Track which position is being exited
 
   const stockData = {
-    todayLow: 150.00,
-    todayHigh: 155.00,
-    fiftyTwoWLow: 120.00,
-    fiftyTwoWHigh: 180.00,
-    open: 152.00,
-    prevClose: 151.00,
-    volume: 100000,
-    lowerCircuit: 145.00,
-    upperCircuit: 160.00,
+    todayLow: 618.27,
+    todayHigh: 631.90,
+    fiftyTwoWLow: 440.00,
+    fiftyTwoWHigh: 698.30,
+    open: 629.90,
+    prevClose: 627.80,
+    volume: 64057,
+    lowerCircuit: 502.25,
+    upperCircuit: 753.35,
   };
 
   const handleSelectChange = (event) => {

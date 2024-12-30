@@ -9,7 +9,7 @@ const StockGraph = ({ initialPrice, setCurrentPrice }) => {
     labels: [],
     datasets: [
       {
-        label: 'Stock Price', // This label will be removed from the legend
+        label: 'Stock Price',
         data: [],
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -46,11 +46,6 @@ const StockGraph = ({ initialPrice, setCurrentPrice }) => {
   }, [initialPrice, setCurrentPrice]);
 
   const options = {
-    plugins: {
-      legend: {
-        display: false, // Disable the legend
-      },
-    },
     scales: {
       x: {
         ticks: {
