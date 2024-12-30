@@ -294,3 +294,65 @@ input:checked + .slider:before {
   .chatbot-button:hover {
     background-color: #7a3cbb; 
   }
+
+  .chat-terminal {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    position: absolute;
+    bottom: 60px;
+    right: 20px;
+    background-color: white;
+    color: #000000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chat-messages {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user {
+    align-self: flex-end;
+    background-color: #d1e7dd;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px 0;
+  }
+  
+  .bot {
+    align-self: flex-start;
+    background-color: #f8d7da;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px 0;
+  }
+  
+  .chat-input {
+    display: flex;
+    padding: 10px;
+  }
+  
+  .chat-input input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .chat-input button {
+    margin-left: 5px;
+  }
+  
+  .question-buttons {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .question-buttons button {
+    margin: 5px 0;
+  }

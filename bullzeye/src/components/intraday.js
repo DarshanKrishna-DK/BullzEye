@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import bullzeyeLogo from '../assets/Logo_noName.png';
 import '../styles/intraday.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
@@ -41,7 +41,6 @@ function Intraday() {
       </div>
   );
 }
-
 
 // Contains the index prices (NIFTY, BANK NIFTY, SENSEX, etc)
 const Index = () => {
@@ -97,7 +96,7 @@ const StockDetails = ({ currentPrice, initialPrice, walletBalance }) => {
         <h2>One Mobikwik Systems</h2>
         <p>₹{currentPrice}
           <span className={returnsClass}>
-            {returns.toFixed(2)} ({returnPercent}%) 
+            {returns.toFixed(2)} ({ returnPercent}%) 
           </span>
         </p>
       </div>
@@ -127,8 +126,52 @@ const StockDetails = ({ currentPrice, initialPrice, walletBalance }) => {
 
 // Contains news section, test token balance and chatbot assistant. 
 const TraderTools = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+
   const handleChatbotClick = () => {
-    alert("Chatbot is now open!"); // Placeholder for chatbot functionality
+    setIsOpen(!isOpen);
+  };
+
+  const handleSend = () => {
+    if (input.trim()) {
+      setMessages([...messages, { text: input, sender: 'user' }]);
+      // Handle user input directly
+      handleQuestionClick(input.trim());
+      setInput('');
+    }
+  };
+
+  const handleQuestionClick = (question) => {
+    const currentTime = new Date();
+    const marketOpenTime = new Date();
+    marketOpenTime.setHours(9, 15, 0); // Set to 9:15 AM
+
+    let response;
+    if (question === 'What are the stocks which have risen more than 12% today?') {
+      if (currentTime < marketOpenTime) {
+        response = "The market will open at 9:15 AM.";
+      } else {
+        response = "None at this moment.";
+      }
+    } else if (question === 'What are the stocks with 6%+ loss today?') {
+      if (currentTime < marketOpenTime) {
+        response = "The market is yet to open.";
+      } else {
+        response = "None at this moment.";
+      }
+    } else {
+      response = "I'm not sure how to answer that.";
+    }
+
+    // Add the bot response to messages
+    setTimeout(() => {
+      setMessages(prevMessages => [
+        ...prevMessages,
+        { text: response, sender: 'bot' },
+      ]);
+    }, 500);
   };
 
   return (
@@ -136,17 +179,37 @@ const TraderTools = () => {
       <div className="news-section">
         <h3>News & Events</h3>
         <div className='news-box'>
-          <h5>News one title goes here</h5>
-          <a href='www.google.com'>Read more <FontAwesomeIcon icon={faArrowUpRightFromSquare} /></a>
+          <h5>No news at this moment.</h5>
         </div>
-        <div className='news-box'>
+        {/* <div className='news-box'>
           <h5>News two title goes here</h5>
           <a href='www.google.com'>Read more <FontAwesomeIcon icon={faArrowUpRightFromSquare} /></a>
-        </div>
+        </div> */}
       </div>
       <button className="chatbot-button" onClick={handleChatbotClick}>
         🤖 BIG BULL
       </button>
+
+      {isOpen && (
+        <div className="chat-terminal">
+          <div className="chat-messages">
+            {messages.map((msg, index) => (
+              <div key={index} className={msg.sender}>
+                {msg.text}
+              </div>
+            ))}
+          </div>
+          <div className="chat-input">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type your message..."
+            />
+            <button onClick={handleSend}>Send</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
