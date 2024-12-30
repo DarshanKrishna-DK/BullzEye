@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { faArrowUpRightFromSquare, faBell, faBookmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, {  useState, useEffect  } from 'react';
 import bullzeyeLogo from '../assets/Logo_noName.png';
 import '../styles/intraday.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
-import { faBookmark, faBell, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import StockDropDown from './stockDropDown';
 import StockGraph from './stockGraph';
 import StockPositions from './stockPositions';
@@ -147,50 +147,52 @@ const StockDetails = ({ currentPrice, initialPrice, walletBalance }) => {
   );
 };
 
+
 // Contains news section, test token balance and chatbot assistant. 
 const TraderTools = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
   const handleChatbotClick = () => {
-    setIsOpen(!isOpen);
+    setOpen(!isOpen);
+    if (isOpen) {
+      // Clear the chat when closing
+      setMessages([]);
+    }
   };
 
-  const handleSend = () => {
-    if (input.trim()) {
-      setMessages([...messages, { text: input, sender: 'user' }]);
-      // Handle user input directly
-      handleQuestionClick(input.trim());
-      setInput('');
+  const handleSend = (messageText, isAutoSend = false) => {
+    if (messageText.trim()) {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: messageText, sender: isAutoSend ? 'bot' : 'user' },
+      ]);
+
+      if (!isAutoSend) {
+        handleQuestionClick(messageText.trim());
+        setInput('');
+      }
     }
   };
 
   const handleQuestionClick = (question) => {
     const currentTime = new Date();
     const marketOpenTime = new Date();
-    marketOpenTime.setHours(9, 15, 0); // Set to 9:15 AM
+    marketOpenTime.setHours(9, 15, 0);
 
     let response;
-    if (question === 'What are the stocks which have risen more than 12% today?') {
-      if (currentTime < marketOpenTime) {
-        response = "The market will open at 9:15 AM.";
-      } else {
-        response = "None at this moment.";
-      }
-    } else if (question === 'What are the stocks with 6%+ loss today?') {
-      if (currentTime < marketOpenTime) {
-        response = "The market is yet to open.";
-      } else {
-        response = "None at this moment.";
-      }
+    if (question === 'Stocks > 12%') {
+      response = currentTime < marketOpenTime ? 'The market will open at 9:15 AM.' : 'None at this moment.';
+    } else if (question === 'Stocks < 6%') {
+      response = currentTime < marketOpenTime ? 'The market is yet to open.' : 'None at this moment.';
     } else {
       response = "I'm not sure how to answer that.";
     }
 
-    // Add the bot response to messages
+    // Simulate bot response
     setTimeout(() => {
-      setMessages(prevMessages => [
+      setMessages((prevMessages) => [
         ...prevMessages,
         { text: response, sender: 'bot' },
       ]);
@@ -199,42 +201,81 @@ const TraderTools = () => {
 
   return (
     <div className="trader-tools">
-      <div className="news-section">
-        <h3>News & Events</h3>
-        <div className='news-box'>
-          <h5>No news at this moment.</h5>
-        </div>
-        {/* <div className='news-box'>
-          <h5>News two title goes here</h5>
-          <a href='www.google.com'>Read more <FontAwesomeIcon icon={faArrowUpRightFromSquare} /></a>
-        </div> */}
-      </div>
-      <button className="chatbot-button" onClick={handleChatbotClick}>
-        🤖 BIG BULL
-      </button>
-
-      {isOpen && (
-        <div className="chat-terminal">
+      {!isOpen ? (
+        <>
+          <div className="news-section">
+            <h3>News & Events</h3>
+            <div className="news-box">
+              <h5>News one title goes here</h5>
+              <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+                Read more <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+              </a>
+            </div>
+            <div className="news-box">
+              <h5>News one title goes here</h5>
+              <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+                Read more <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+              </a>
+            </div>
+          </div>
+          <button className="chatbot-button" onClick={handleChatbotClick}>
+            🤖 BIG BULL
+          </button>
+        </>
+      ) : (
+        <div className={`chat-section ${isOpen ? 'open' : ''}`}>
+          <div className="chat-header">
+            <h3>Chat with BIG BULL</h3>
+          </div>
           <div className="chat-messages">
             {messages.map((msg, index) => (
-              <div key={index} className={msg.sender}>
+              <div key={index} className={`chat-message ${msg.sender === 'user' ? 'user-message' : 'bot-message'}`}>
                 {msg.text}
               </div>
             ))}
           </div>
-          <div className="chat-input">
+          <div className="chat-buttons">
+            <div className="button-row">
+              <button
+                className="chatbot-option-button"
+                onClick={() => {
+                  handleSend('Stocks > 12%', true);
+                  handleQuestionClick('Stocks > 12%');
+                }}
+              >
+                Stocks {'>'} 12%
+              </button>
+              <button
+                className="chatbot-option-button"
+                onClick={() => {
+                  handleSend('Stocks < 6%', true);
+                  handleQuestionClick('Stocks < 6%');
+                }}
+              >
+                Stocks {'<'} 6%
+              </button>
+            </div>
+          </div>
+          <div className="chat-input-section">
             <input
-              type="text"
+              className="chatbot-input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
+              type="text"
+              placeholder="Enter Chat"
             />
-            <button onClick={handleSend}>Send</button>
+            <button className="send-button" onClick={() => handleSend(input)}>
+              Send
+            </button>
           </div>
+          <button className="chatbot-close-button" onClick={handleChatbotClick}>
+            Close
+          </button>
         </div>
       )}
     </div>
   );
 };
+
 
 export default Intraday;
