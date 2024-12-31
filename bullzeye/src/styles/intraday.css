@@ -78,6 +78,7 @@ body {
     font-size: 1.4rem;
 }
 
+
 .Intra-page{
     display: flex;
     padding: 0 2.5rem 0 3rem;
@@ -112,38 +113,12 @@ body {
 }
 
 .chatbot-input{
-    width: 94%;
-    margin-bottom: 20px;
+    width: 70%;
+    margin: 20px 0 20px 20px;
     height: 30px;
     background-color: rgb(18, 18, 18);
     border-color: #000000;
-
-}
-
-.chatbot-option-button {
-    width: 100%; /* Ensures the button takes up the full width of the table cell */
-    background-color: rgb(128, 127, 127);
-    border: none;
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-
-.chatbot-close-button{
-    background-color: rgb(128, 127, 127); 
-    border: none; 
-    border-radius: 5px;
-    padding: .5rem 0.5rem;
-    cursor: pointer;
-    margin: 0;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease; 
-    padding-left: 40%;
-    padding-right: 40%;
-    position: inherit;
+    color: white;
 }
 
 .table-button-data{
@@ -176,10 +151,13 @@ body {
   
   .chat-input-section {
     display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
     gap: 10px;
+    width: 100%;
   }
 
-  .chat-buttons {
+  .chat-buttons{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -188,19 +166,18 @@ body {
   
   .button-row {
     display: flex;
-    gap: 10px; /* Add spacing between buttons */
+    justify-content: center;
+    align-items: center;
   }
   
   .chatbot-option-button {
-    padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: rgb(20, 20, 20);
     color: white;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s;
-    flex: 1; /* Makes the buttons adapt evenly */
+    transition: all 0.3s ease-in-out;
   }
   
   .chatbot-option-button:hover {
@@ -242,17 +219,18 @@ body {
     background: peru;
 }
 
-.Send-Button{
-    background-color: rgb(128, 127, 127); 
+.send-button{
+    background-color: rgb(20, 20, 20); 
+    color: white;
     border: none; 
     border-radius: 5px;
-    padding: .5rem 0.5rem;
+    height: 2rem;
     cursor: pointer;
-    margin: 0;
-    font-size: 1.1rem;
+    margin: 0 .5rem;
+    font-size: .9rem;
     transition: background-color 0.3s ease; 
     position: inherit;
-    padding: 0%;
+    padding: 0 .5rem;
 }
 
 .stock-buttons {
@@ -369,6 +347,13 @@ input:checked + .slider:before {
     max-height: 100vh;
     flex: 0 0 17%;
 }
+
+.trader-tools{
+  /* max-width: 15rem; */
+  /* overflow: hidden; */
+  padding: 0;
+  max-width: 18rem;
+}
   
 .stock-dropdown .flex-container{
     margin-top: 1.5rem;
@@ -440,12 +425,30 @@ input:checked + .slider:before {
     background-color: rgb(128, 127, 127); 
     border: none; 
     border-radius: 5px;
-    padding: .5rem 0.7rem;
+    padding: .5rem 1rem; /* Adjust padding for better appearance */
     cursor: pointer;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
     transition: background-color 0.3s ease; 
-  }
+    width: 100%; /* Make the button take full width */
+    max-width: 200px; /* Set a maximum width to prevent overflow */
+    text-align: center; /* Center the text */
+}
+
+.chatbot-close-button {
+    background-color: rgb(20, 20, 20);
+    color: white; 
+    border: none; 
+    border-radius: 5px;
+    padding: .5rem 1rem; /* Adjust padding for better appearance */
+    cursor: pointer;
+    margin: 0;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease; 
+    width: 100%; /* Make the button take full width */
+    max-width: 200px; /* Set a maximum width to prevent overflow */
+    text-align: center; /* Center the text */
+}
   
 .button-set{
     position: relative;
@@ -459,3 +462,7 @@ input:checked + .slider:before {
   .chatbot-close-button:hover {
     background-color: #7a3cbb; 
   }
+
+.chat-section{
+  width: 100%;
+}
